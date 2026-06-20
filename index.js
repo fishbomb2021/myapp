@@ -2,10 +2,11 @@ const express = require('express');
 const app = express();
 const port = 8080;
 
-// Route with parameters
-app.get('/users/:userId/books/:bookId', (req, res) => {
-  // Access parameters using req.params
-  res.send(`User ID: ${req.params.userId}, Book ID: ${req.params.bookId}`);
+// Route handling query parameters
+app.get('/search', (req, res) => {
+  // Access query parameters using req.query
+  const { q, category } = req.query;
+  res.send(`Search query: ${q}, Category: ${category || 'none'}`);
 });
 
 app.listen(port, () => {
