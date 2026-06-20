@@ -2,27 +2,12 @@ const express = require('express');
 const app = express();
 const port = 8080;
 
-// Respond to GET request on the root route
-app.get('/', (req, res) => {
-  res.send('GET request to the homepage');
+// Route with parameters
+app.get('/users/:userId/books/:bookId', (req, res) => {
+  // Access parameters using req.params
+  res.send(`User ID: ${req.params.userId}, Book ID: ${req.params.bookId}`);
 });
 
-// Respond to POST request on the root route
-app.post('/', (req, res) => {
-  res.send('POST request to the homepage');
-});
-
-// Respond to GET request on the /about route
-app.get('/about', (req, res) => {
-  res.send('About page');
-});
-
-// Catch all other routes
-app.use((req, res) => {
-  res.status(404).send('404 - Page not found');
-});
-
-// Start the server
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });
